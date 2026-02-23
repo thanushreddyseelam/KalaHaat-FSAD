@@ -1,0 +1,484 @@
+.payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+    padding: 50px 80px;
+    background: var(--light);
+    min-height: 75vh;
+}
+
+.pay-card {
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(44, 24, 16, 0.09);
+}
+
+.pay-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--earth);
+}
+
+.pay-methods {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.pay-tab {
+    border: 2px solid #E8D8C4;
+    border-radius: 10px;
+    padding: 14px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+}
+
+.pay-tab.selected {
+    border-color: var(--terracotta);
+    background: #FDF0E8;
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.pay-section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-bottom: 16px;
+}
+
+.upi-apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.upi-app {
+    border: 2px solid #E8D8C4;
+    border-radius: 10px;
+    padding: 14px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.68rem;
+    font-family: 'Space Mono', monospace;
+}
+
+.upi-app:hover {
+    border-color: var(--terracotta);
+    background: #FDF0E8;
+}
+
+.verify-btn {
+    background: var(--earth);
+    color: var(--turmeric);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.card-preview {
+    background: linear-gradient(135deg, var(--earth) 0%, var(--clay) 100%);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
+}
+
+.card-preview-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.card-preview-top span:first-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--turmeric);
+}
+
+.card-preview-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: var(--cream);
+    margin-bottom: 16px;
+}
+
+.card-preview-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-preview-bottom small {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: rgba(245, 237, 214, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-preview-bottom div div {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--cream);
+}
+
+.bank-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.bank-item {
+    border: 2px solid #E8D8C4;
+    border-radius: 10px;
+    padding: 14px 8px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: 'Space Mono', monospace;
+}
+
+.bank-item:hover {
+    border-color: var(--terracotta);
+    background: #FDF0E8;
+}
+
+.wallet-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.wallet-item {
+    border: 2px solid #E8D8C4;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.wallet-item:hover {
+    border-color: var(--terracotta);
+    background: #FDF0E8;
+}
+
+.wallet-item strong {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+.cod-box {
+    background: linear-gradient(135deg, #F5F0E8, #FDF6EC);
+    border: 2px dashed var(--ochre);
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+}
+
+.cod-box h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 8px;
+}
+
+.cod-box p {
+    color: var(--bark);
+    margin-bottom: 16px;
+}
+
+.cod-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.cod-features>div {
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.07);
+}
+
+.cod-features span {
+    display: block;
+}
+
+.cod-features span:first-child {
+    font-size: 1.4rem;
+}
+
+.cod-features span:last-child {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+    margin-top: 6px;
+}
+
+.checkout-progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: #E8D8C4;
+    color: var(--bark);
+}
+
+.progress-step.done .progress-circle {
+    background: var(--moss);
+    color: white;
+}
+
+.progress-step.active .progress-circle {
+    background: var(--terracotta);
+    color: white;
+}
+
+.progress-step span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+}
+
+.progress-step.done span {
+    color: var(--moss);
+}
+
+.progress-step.active span {
+    color: var(--terracotta);
+}
+
+.progress-line {
+    flex: 1;
+    height: 2px;
+    background: #E8D8C4;
+    margin: 0 12px;
+}
+
+.progress-line.done {
+    background: var(--moss);
+}
+
+.addr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.addr-type-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    border: 2px solid #E8D8C4;
+    border-radius: 6px;
+    flex: 1;
+    justify-content: center;
+}
+
+.addr-type-label input {
+    accent-color: var(--terracotta);
+}
+
+.pay-summary {
+    background: white;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(44, 24, 16, 0.09);
+    position: sticky;
+    top: 130px;
+}
+
+.pay-summary h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--cream);
+}
+
+.pay-items {
+    margin-bottom: 16px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.pay-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.pay-item-img {
+    width: 44px;
+    height: 44px;
+    background: var(--cream);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.pay-totals {
+    padding-top: 14px;
+    border-top: 1px solid var(--cream);
+}
+
+.pay-deliver-to {
+    margin-top: 20px;
+    padding: 14px;
+    background: var(--cream);
+    border-radius: 8px;
+}
+
+.pay-deliver-to small {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--bark);
+}
+
+.success-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    animation: popIn 0.4s ease;
+}
+
+.success-modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--earth);
+    margin-bottom: 8px;
+}
+
+.success-modal p {
+    color: var(--bark);
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+.success-order-id {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+    .payment-grid {
+        padding: 30px;
+        gap: 24px;
+    }
+
+    .pay-methods {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .payment-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .pay-methods {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .upi-apps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bank-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wallet-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .addr-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pay-summary {
+        position: static;
+    }
+
+    .checkout-progress {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cod-features {
+        grid-template-columns: 1fr;
+    }
+}
