@@ -1,0 +1,233 @@
+warning: could not open directory 'AppData/Local/Application Data/': Permission denied
+warning: could not open directory 'Application Data/': Permission denied
+warning: could not open directory 'Cookies/': Permission denied
+warning: could not open directory 'Local Settings/': Permission denied
+warning: could not open directory 'My Documents/': Permission denied
+warning: could not open directory 'NetHood/': Permission denied
+warning: could not open directory 'PrintHood/': Permission denied
+warning: could not open directory 'Recent/': Permission denied
+warning: could not open directory 'SendTo/': Permission denied
+warning: could not open directory 'Start Menu/': Permission denied
+warning: could not open directory 'Templates/': Permission denied
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	../../../.VirtualBox/
+	../../../.anaconda/
+	../../../.antigravity/
+	../../../.arduinoIDE/
+	../../../.cache/
+	../../../.conda/
+	../../../.condarc
+	../../../.continuum/
+	../../../.eclipse/
+	../../../.gemini/
+	../../../.gitconfig
+	../../../.gradle/
+	../../../.idlerc/
+	../../../.ipynb_checkpoints/
+	../../../.ipython/
+	../../../.jupyter/
+	../../../.keras/
+	../../../.lesshst
+	../../../.m2/
+	../../../.matplotlib/
+	../../../.node_repl_history
+	../../../.p2/
+	../../../.packettracer
+	../../../.sts4/
+	../../../.virtual_documents/
+	../../../.vscode/
+	../../../AppData/
+	../../../Cisco Packet Tracer 9.0.0/
+	../../../Contacts/
+	../../../CrossDevice/
+	../../../Desktop/
+	../../../Documents/
+	../../
+	../../../Favorites/
+	../../../Links/
+	../../../Microsoft/
+	../../../Music/
+	../../../NTUSER.DAT
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TM.blf
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TM.blf.cnpf
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TMContainer00000000000000000001.regtrans-ms
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TMContainer00000000000000000001.regtrans-ms.cnpf
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TMContainer00000000000000000002.regtrans-ms
+	../../../NTUSER.DAT{6d8daad9-7bb9-11f0-978b-ec49c67d3104}.TMContainer00000000000000000002.regtrans-ms.cnpf
+	../../../OneDrive - K L University/
+	../../../OneDrive/.849C9593-D756-4E56-8D6E-42412F2A707B
+	../../../OneDrive/2400090160_FSAD/
+	../../../OneDrive/Apps/
+	../../../OneDrive/CN/
+	../../../OneDrive/COURSERA CERTIFICATES/
+	../../../OneDrive/CTSD/RAPTOR/
+	../../../OneDrive/CTSD/dev c pp/Fibanocci.c
+	../../../OneDrive/CTSD/dev c pp/Fibanocci.exe
+	../../../OneDrive/CTSD/dev c pp/GCD_c.cpp
+	../../../OneDrive/CTSD/dev c pp/GCD_c.exe
+	../../../OneDrive/CTSD/dev c pp/HA1.C
+	../../../OneDrive/CTSD/dev c pp/HA1.exe
+	../../../OneDrive/CTSD/dev c pp/Main2.class
+	../../../OneDrive/CTSD/dev c pp/Main2.java
+	../../../OneDrive/CTSD/dev c pp/TRAINTICKET_PROJECT.c
+	../../../OneDrive/CTSD/dev c pp/TRAINTICKET_PROJECT.exe
+	../../../OneDrive/CTSD/dev c pp/Untitled1.cpp
+	../../../OneDrive/CTSD/dev c pp/Untitled1.exe
+	../../../OneDrive/CTSD/dev c pp/Untitled4.cpp
+	../../../OneDrive/CTSD/dev c pp/Untitled4.exe
+	../../../OneDrive/CTSD/dev c pp/Untitled56.c
+	../../../OneDrive/CTSD/dev c pp/Untitled56.exe
+	../../../OneDrive/CTSD/dev c pp/addition.exe
+	../../../OneDrive/CTSD/dev c pp/addition_matrix.c
+	../../../OneDrive/CTSD/dev c pp/area_of_circle.c
+	../../../OneDrive/CTSD/dev c pp/area_of_circle.exe
+	../../../OneDrive/CTSD/dev c pp/arm strong num or not.cpp
+	../../../OneDrive/CTSD/dev c pp/arm strong num or not.exe
+	../../../OneDrive/CTSD/dev c pp/armsttongnew.c
+	../../../OneDrive/CTSD/dev c pp/armsttongnew.exe
+	../../../OneDrive/CTSD/dev c pp/calci 2.cpp
+	../../../OneDrive/CTSD/dev c pp/calci 2.exe
+	../../../OneDrive/CTSD/dev c pp/calculat.c
+	../../../OneDrive/CTSD/dev c pp/calculat.exe
+	../../../OneDrive/CTSD/dev c pp/calculator.cpp
+	../../../OneDrive/CTSD/dev c pp/cc.c
+	../../../OneDrive/CTSD/dev c pp/cc.exe
+	../../../OneDrive/CTSD/dev c pp/circularlinkedlist.c
+	../../../OneDrive/CTSD/dev c pp/ctsd_project.c
+	../../../OneDrive/CTSD/dev c pp/ctsd_project.exe
+	../../../OneDrive/CTSD/dev c pp/details_arrays.c
+	../../../OneDrive/CTSD/dev c pp/details_arrays.exe
+	../../../OneDrive/CTSD/dev c pp/differentdatatypes.c
+	../../../OneDrive/CTSD/dev c pp/differentdatatypes.exe
+	../../../OneDrive/CTSD/dev c pp/differentlines.c
+	../../../OneDrive/CTSD/dev c pp/differentlines.exe
+	../../../OneDrive/CTSD/dev c pp/dist.c
+	../../../OneDrive/CTSD/dev c pp/dist.exe
+	../../../OneDrive/CTSD/dev c pp/div_method.c
+	../../../OneDrive/CTSD/dev c pp/div_method.exe
+	../../../OneDrive/CTSD/dev c pp/fact.c
+	../../../OneDrive/CTSD/dev c pp/fact.exe
+	../../../OneDrive/CTSD/dev c pp/fact_recursion.c
+	../../../OneDrive/CTSD/dev c pp/fact_recursion.exe
+	../../../OneDrive/CTSD/dev c pp/fib.c
+	../../../OneDrive/CTSD/dev c pp/fib.exe
+	../../../OneDrive/CTSD/dev c pp/fib_recursion.c
+	../../../OneDrive/CTSD/dev c pp/fib_recursion.exe
+	../../../OneDrive/CTSD/dev c pp/h.c
+	../../../OneDrive/CTSD/dev c pp/h.exe
+	../../../OneDrive/CTSD/dev c pp/hifriends.c
+	../../../OneDrive/CTSD/dev c pp/hifriends.exe
+	../../../OneDrive/CTSD/dev c pp/largest.c
+	../../../OneDrive/CTSD/dev c pp/largest.exe
+	../../../OneDrive/CTSD/dev c pp/magic_num.c
+	../../../OneDrive/CTSD/dev c pp/magic_num.exe
+	../../../OneDrive/CTSD/dev c pp/nested_structures.c
+	../../../OneDrive/CTSD/dev c pp/nested_structures.exe
+	../../../OneDrive/CTSD/dev c pp/p1.c
+	../../../OneDrive/CTSD/dev c pp/p1.exe
+	../../../OneDrive/CTSD/dev c pp/palindrome.c
+	../../../OneDrive/CTSD/dev c pp/palindrome.exe
+	../../../OneDrive/CTSD/dev c pp/pattern_1.cpp
+	../../../OneDrive/CTSD/dev c pp/pattern_1.exe
+	../../../OneDrive/CTSD/dev c pp/pattern_2.cpp
+	../../../OneDrive/CTSD/dev c pp/pattern_2.exe
+	../../../OneDrive/CTSD/dev c pp/pattern_4.c
+	../../../OneDrive/CTSD/dev c pp/pattern_4.exe
+	../../../OneDrive/CTSD/dev c pp/pega_pegb_pegc.c
+	../../../OneDrive/CTSD/dev c pp/pega_pegb_pegc.exe
+	../../../OneDrive/CTSD/dev c pp/pettern3.c
+	../../../OneDrive/CTSD/dev c pp/pettern3.exe
+	../../../OneDrive/CTSD/dev c pp/pointer_swapping.c
+	../../../OneDrive/CTSD/dev c pp/pointer_swapping.exe
+	../../../OneDrive/CTSD/dev c pp/positive.c
+	../../../OneDrive/CTSD/dev c pp/positive.exe
+	../../../OneDrive/CTSD/dev c pp/prime_num.c
+	../../../OneDrive/CTSD/dev c pp/prime_num.exe
+	../../../OneDrive/CTSD/dev c pp/project_18.c
+	../../../OneDrive/CTSD/dev c pp/project_18.exe
+	../../../OneDrive/CTSD/dev c pp/ptrn_1.cpp
+	../../../OneDrive/CTSD/dev c pp/ptrn_1.exe
+	../../../OneDrive/CTSD/dev c pp/ptrn_2.cpp
+	../../../OneDrive/CTSD/dev c pp/ptrn_2.exe
+	../../../OneDrive/CTSD/dev c pp/quicksort.c
+	../../../OneDrive/CTSD/dev c pp/quicksort.exe
+	../../../OneDrive/CTSD/dev c pp/reading_matrix.c
+	../../../OneDrive/CTSD/dev c pp/reading_matrix.exe
+	../../../OneDrive/CTSD/dev c pp/rightelemens_sum_matrix.c
+	../../../OneDrive/CTSD/dev c pp/rightelemens_sum_matrix.exe
+	../../../OneDrive/CTSD/dev c pp/shellsort.c
+	../../../OneDrive/CTSD/dev c pp/shellsort.exe
+	../../../OneDrive/CTSD/dev c pp/singleLL.c
+	../../../OneDrive/CTSD/dev c pp/singleLL.exe
+	../../../OneDrive/CTSD/dev c pp/single_linked_list_operations.c
+	../../../OneDrive/CTSD/dev c pp/single_linked_list_operations.exe
+	../../../OneDrive/CTSD/dev c pp/stack.c
+	../../../OneDrive/CTSD/dev c pp/stack.exe
+	../../../OneDrive/CTSD/dev c pp/struct_creation.c
+	../../../OneDrive/CTSD/dev c pp/struct_creation.exe
+	../../../OneDrive/CTSD/dev c pp/struct_using_array.c
+	../../../OneDrive/CTSD/dev c pp/struct_using_array.exe
+	../../../OneDrive/CTSD/dev c pp/struct_using_functions.c
+	../../../OneDrive/CTSD/dev c pp/struct_using_functions.exe
+	../../../OneDrive/CTSD/dev c pp/sum_recursion.c
+	../../../OneDrive/CTSD/dev c pp/sum_recursion.exe
+	../../../OneDrive/CTSD/dev c pp/swaptwo.c
+	../../../OneDrive/CTSD/dev c pp/swaptwo.exe
+	../../../OneDrive/CTSD/dev c pp/two_dimensional_strings.c
+	../../../OneDrive/CTSD/dev c pp/two_dimensional_strings.exe
+	../../../OneDrive/CTSD/dev c pp/variable..c
+	../../../OneDrive/CTSD/dev c pp/variable..exe
+	../../../OneDrive/CTSD/dev c pp/venu.cpp
+	../../../OneDrive/CTSD/dev c pp/venu.exe
+	../../../OneDrive/CTSD/dev c pp/weather.c
+	../../../OneDrive/CTSD/dev c pp/weather.exe
+	../../../OneDrive/CTSD/dev c pp/ws_1.c
+	../../../OneDrive/CTSD/dev c pp/ws_1.exe
+	../../../OneDrive/DBMS/
+	../../../OneDrive/FEDF/
+	../../../OneDrive/KLU FEE PAYMENTS/
+	../../../OneDrive/OOP/
+	../../../OneDrive/Personal Vault.lnk
+	../../../OneDrive/Pictures/
+	../../../OneDrive/SIL/
+	../../../OneDrive/VSCODE/
+	../../../OneDrive/desktop.ini
+	../../../OneDrive/react/
+	../../../Pictures/
+	../../../PycharmProjects/
+	../../../Saved Games/
+	../../../Searches/
+	../../../Untitled.ipynb
+	../../../Untitled1.ipynb
+	../../../Untitled10.ipynb
+	../../../Untitled11.ipynb
+	../../../Untitled12.ipynb
+	../../../Untitled13.ipynb
+	../../../Untitled2.ipynb
+	../../../Untitled3.ipynb
+	../../../Untitled4.ipynb
+	../../../Untitled5.ipynb
+	../../../Untitled6.ipynb
+	../../../Untitled7.ipynb
+	../../../Untitled8.ipynb
+	../../../Untitled9.ipynb
+	../../../Videos/
+	../../../anaconda3/
+	../../../anaconda_projects/
+	../../../battery-report.html
+	../../../eclipse-workspace/
+	../../../eclipse/
+	../../../git
+	../../../ntuser.dat.LOG1
+	../../../ntuser.dat.LOG2
+	../../../ntuser.ini
+	../../../untitled.py
+	../../../untitled1.py
+	../../../untitled2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
