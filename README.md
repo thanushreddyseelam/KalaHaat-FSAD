@@ -1,16 +1,49 @@
-# React + Vite
+# KalaHaat (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend repository for **KalaHaat**, India's premier tribal handicrafts e-commerce marketplace. This project is built using React and Vite.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Prerequisites
+To run this project on your device, you need the following installed:
+1.  **Node.js** (v18 or higher recommended)
+2.  **Git**
 
-## React Compiler
+*Note: You must also have the **KalaHaat Spring Boot Backend** running simultaneously for the data (login, products, cart) to work properly.*
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Clone the project
+Open your terminal and clone the repository:
+```bash
+git clone https://github.com/thanushreddyseelam/KalaHaat-FSAD.git
+cd KalaHaat-FSAD
+```
+
+### 2. Install Dependencies
+Install all the required React packages:
+```bash
+npm install
+```
+
+### 3. Run the Development Server
+Start the application:
+```bash
+npm run dev
+```
+
+The terminal will provide a URL (usually **`http://localhost:5173`**). Open this link in your web browser.
+
+---
+
+## 🔌 API Connection
+By default, this React application expects the backend API to be running locally at `http://localhost:5000/api`. Ensure your Spring Boot application is started.
+
+## ✨ Tech Stack
+*   **React** (Components and state caching via Context)
+*   **Vite** (Next-generation lightning-fast build tool)
+*   **React Router** (DOM navigation)
+*   **Framer Motion** (Buttery smooth animations)
+*   **Vanilla CSS** (Custom, scalable design systems)
