@@ -1,5 +1,5 @@
 .hero {
-    background: var(--earth);
+    background: linear-gradient(145deg, #0F2620 0%, #1B3A2D 50%, #1A2F3D 100%);
     min-height: 92vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -18,7 +18,7 @@
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(196, 98, 45, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(76, 175, 125, 0.15) 0%, transparent 70%);
 }
 
 .hero::after {
@@ -47,7 +47,7 @@
     content: '';
     width: 40px;
     height: 2px;
-    background: var(--terracotta);
+    background: var(--dash-customer-accent);
 }
 
 .hero-title {
@@ -102,6 +102,19 @@
     backdrop-filter: blur(10px);
     transition: all 0.3s;
     overflow: hidden;
+    opacity: 0;
+    animation: slideUpFade 0.6s ease forwards;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-card:hover {
@@ -137,7 +150,7 @@
 }
 
 .hero-card:hover .hero-card-img img {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-4px);
 }
 
 .hero-card-emoji {
@@ -194,18 +207,18 @@
 }
 
 .section-nav a:hover {
-    color: var(--terracotta);
-    border-bottom-color: rgba(196, 98, 45, 0.3);
+    color: #2D7A5A;
+    border-bottom-color: rgba(76, 175, 125, 0.3);
 }
 
 .section-nav a.active {
-    color: var(--terracotta);
-    border-bottom-color: var(--terracotta);
+    color: #1B3A2D;
+    border-bottom-color: var(--dash-customer-accent);
 }
 
 .section-nav-shop {
     margin-left: auto;
-    background: var(--terracotta) !important;
+    background: var(--dash-customer-accent) !important;
     color: white !important;
     border-radius: 4px !important;
     padding: 10px 20px !important;
@@ -219,14 +232,14 @@
 }
 
 .section-nav-shop:hover {
-    background: var(--clay) !important;
+    background: #2D7A5A !important;
     transform: translateY(-2px);
     color: white !important;
     border-bottom: none !important;
 }
 
 .stats-banner {
-    background: var(--terracotta);
+    background: linear-gradient(135deg, #1B3A2D 0%, #2D7A5A 100%);
     padding: 30px 80px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -289,8 +302,8 @@
 }
 
 .category-item:hover .category-icon {
-    border-color: var(--terracotta);
-    background: #FDF0E8;
+    border-color: var(--dash-customer-accent);
+    background: #E8F5EE;
 }
 
 .category-name {
@@ -315,7 +328,7 @@
 
 .artisan-section {
     padding: 80px;
-    background: var(--earth);
+    background: linear-gradient(145deg, #0F2620 0%, #1B3A2D 100%);
     color: var(--cream);
     scroll-margin-top: 120px;
 }
@@ -345,7 +358,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: var(--terracotta);
+    background: var(--dash-customer-accent);
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,0 +1,2 @@
+origin	https://github.com/thanushreddyseelam/KalaHaat-FSAD.git (fetch)
+origin	https://github.com/thanushreddyseelam/KalaHaat-FSAD.git (push)

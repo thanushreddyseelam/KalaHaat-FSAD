@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import { paymentAPI } from '../services/api';
 import './PaymentPage.css';
 
 export default function PaymentPage() {
@@ -16,6 +17,14 @@ export default function PaymentPage() {
     const [upiId, setUpiId] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
     const [orderId, setOrderId] = useState('');
+    const [processing, setProcessing] = useState(false);
+
+    // Guard: redirect to cart if cart is empty and we haven't just placed an order
+    useEffect(() => {
+        if (cartItems.length === 0 && !showSuccess && !processing) {
+            navigate('/cart', { replace: true });
+        }
+    }, [cartItems, showSuccess, processing, navigate]);
 
     const validateAddr = () => {
         if (!address.name) { setAddrErr('Please enter recipient name'); return false; }
@@ -28,17 +37,118 @@ export default function PaymentPage() {
         return true;
     };
 
-    const processPayment = () => {
+
+
+    const loadRazorpayScript = () => {
+        return new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+        });
+    };
+
+    const processPayment = async () => {
         if (!validateAddr()) return;
         if (payMethod === 'card' && (!cardName || !cardNum || cardNum.replace(/\s/g, '').length < 16 || !cardExp || !cardCvv)) {
             showToast('⚠ Please fill all card details'); return;
         }
-        showToast(payMethod === 'cod' ? '⏳ Placing your order...' : '⏳ Processing payment...');
-        setTimeout(() => {
-            const id = placeOrder(payMethod, address);
-            setOrderId(id);
-            setShowSuccess(true);
-        }, 1800);
+        
+        setProcessing(true);
+        
+        if (payMethod === 'cod') {
+            showToast('⏳ Placing your order...');
+            setTimeout(async () => {
+                const id = await placeOrder(payMethod, address);
+                if (id) { setOrderId(id); setShowSuccess(true); } else { showToast('⚠ Order failed. Please try again.'); }
+                setProcessing(false);
+            }, 1800);
+            return;
+        }
+
+        try {
+            showToast('⏳ Initializing secure payment...');
+            
+            // 1. Create Order on Backend
+            const res = await paymentAPI.createRazorpayOrder(orderTotal);
+            const { order, key, isMock } = res.data;
+
+            if (isMock) {
+                // Testing Mode (Keys absent)
+                showToast('✅ Mock Payment Success (Sandbox)');
+                const internalId = await placeOrder(payMethod, address);
+                if (internalId) {
+                    await paymentAPI.verifyRazorpayPayment({
+                        razorpay_order_id: order.id,
+                        razorpay_payment_id: 'pay_mock_' + Math.random().toString(36).substr(2, 9),
+                        razorpay_signature: 'signature_mock',
+                        internal_order_id: internalId
+                    });
+                    setOrderId(internalId);
+                    setShowSuccess(true);
+                }
+                setProcessing(false);
+                return;
+            }
+
+            // 2. Load Razorpay SDK (Production)
+            const scriptLoaded = await loadRazorpayScript();
+            if (!scriptLoaded) {
+                showToast('⚠ Failed to load payment gateway');
+                setProcessing(false);
+                return;
+            }
+
+            // 3. Open Modal
+            const options = {
+                key: key,
+                amount: order.amount,
+                currency: order.currency,
+                name: "KalaHaat",
+                description: "Tribal Handicrafts Purchase",
+                order_id: order.id,
+                prefill: {
+                    name: address.name,
+                    contact: address.phone
+                },
+                theme: { color: "#3B4E38" }, // var(--moss)
+                handler: async function (response) {
+                    // 4. Verify Payment & Place Internal Order
+                    showToast('⏳ Verifying payment...');
+                    const internalId = await placeOrder(payMethod, address);
+                    
+                    if (internalId) {
+                        const verification = await paymentAPI.verifyRazorpayPayment({
+                            razorpay_order_id: response.razorpay_order_id,
+                            razorpay_payment_id: response.razorpay_payment_id,
+                            razorpay_signature: response.razorpay_signature,
+                            internal_order_id: internalId
+                        });
+
+                        if (verification.data.success) {
+                            setOrderId(internalId);
+                            setShowSuccess(true);
+                        } else {
+                            showToast('⚠ Payment Verification Failed');
+                        }
+                    }
+                    setProcessing(false);
+                }
+            };
+
+            const rzp = new window.Razorpay(options);
+            rzp.on('payment.failed', function (response) {
+                showToast('❌ Payment Failed: ' + response.error.description);
+                setProcessing(false);
+            });
+            rzp.open();
+
+        } catch (error) {
+            console.error(error);
+            showToast('⚠ Error initiating payment');
+            setProcessing(false);
+        }
     };
 
     const methods = [
@@ -51,8 +161,13 @@ export default function PaymentPage() {
 
     const states = ['Andhra Pradesh', 'Telangana', 'Tamil Nadu', 'Karnataka', 'Kerala', 'Maharashtra', 'Gujarat', 'Rajasthan', 'Madhya Pradesh', 'Chhattisgarh', 'Odisha', 'West Bengal', 'Delhi', 'Uttar Pradesh', 'Bihar', 'Jharkhand', 'Punjab', 'Haryana', 'Other'];
 
+    // If cart is empty and not showing success, show nothing (useEffect will redirect)
+    if (cartItems.length === 0 && !showSuccess) {
+        return null;
+    }
+
     return (
-        <div>
+        <div className="page-fade-in">
             <div className="page-header"><h1>Secure Checkout</h1><p>Complete your purchase safely · 256-bit SSL encrypted</p></div>
             <div className="payment-grid">
                 <div>
@@ -60,9 +175,9 @@ export default function PaymentPage() {
                     <div className="checkout-progress">
                         <div className="progress-step done"><div className="progress-circle">✓</div><span>Cart</span></div>
                         <div className="progress-line done"></div>
-                        <div className="progress-step active"><div className="progress-circle">2</div><span>Payment</span></div>
-                        <div className="progress-line"></div>
-                        <div className="progress-step"><div className="progress-circle">3</div><span>Confirmation</span></div>
+                        <div className={`progress-step ${showSuccess ? 'done' : 'active'}`}><div className="progress-circle">{showSuccess ? '✓' : '2'}</div><span>Payment</span></div>
+                        <div className={`progress-line ${showSuccess ? 'done' : ''}`}></div>
+                        <div className={`progress-step ${showSuccess ? 'active' : ''}`}><div className="progress-circle">{showSuccess ? '✓' : '3'}</div><span>Confirmation</span></div>
                     </div>
 
                     {/* Payment Methods */}
@@ -149,8 +264,13 @@ export default function PaymentPage() {
                             </div>
                         )}
 
-                        <button className="btn-primary" style={{ width: '100%', marginTop: 20, fontSize: '0.85rem', padding: 16, background: payMethod === 'cod' ? 'var(--moss)' : undefined }} onClick={processPayment}>
-                            {payMethod === 'cod' ? '📦 Confirm Cash on Delivery' : `🔒 Pay ₹${orderTotal.toLocaleString('en-IN')}`}
+                        <button
+                            className="btn-primary"
+                            style={{ width: '100%', marginTop: 20, fontSize: '0.85rem', padding: 16, background: payMethod === 'cod' ? 'var(--moss)' : undefined, opacity: processing ? 0.6 : 1 }}
+                            onClick={processPayment}
+                            disabled={processing}
+                        >
+                            {processing ? '⏳ Processing...' : payMethod === 'cod' ? '📦 Confirm Cash on Delivery' : `🔒 Pay ₹${orderTotal.toLocaleString('en-IN')}`}
                         </button>
                     </div>
 
@@ -188,10 +308,10 @@ export default function PaymentPage() {
                         <h3>Order Summary</h3>
                         <div className="pay-items">
                             {cartItems.map(item => (
-                                <div key={item.id} className="pay-item">
+                                <div key={item._id || item.id} className="pay-item">
                                     <div className="pay-item-img">{item.image ? <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} /> : item.emoji}</div>
                                     <div style={{ flex: 1 }}><div style={{ fontWeight: 600 }}>{item.name}</div><div style={{ fontSize: '0.8rem', color: 'var(--bark)' }}>Qty: {item.qty}</div></div>
-                                    <div style={{ fontFamily: "'Space Mono',monospace", color: 'var(--terracotta)' }}>₹{(item.price * item.qty).toLocaleString('en-IN')}</div>
+                                    <div style={{ fontFamily: "'Space Mono',monospace", color: 'var(--terracotta)' }}>₹{(Number(item.price) * item.qty).toLocaleString('en-IN')}</div>
                                 </div>
                             ))}
                         </div>
@@ -213,12 +333,23 @@ export default function PaymentPage() {
             {showSuccess && (
                 <div className="success-overlay">
                     <div className="success-modal">
-                        <div style={{ fontSize: '5rem', marginBottom: 20 }}>🎉</div>
+                        <div className="success-checkmark">
+                            <svg viewBox="0 0 52 52" className="checkmark-svg">
+                                <circle cx="26" cy="26" r="25" fill="none" className="checkmark-circle" />
+                                <path fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" className="checkmark-check" />
+                            </svg>
+                        </div>
                         <h2>Payment Successful!</h2>
                         <p style={{ fontStyle: 'italic', marginBottom: 8 }}>Your order has been placed.</p>
                         <div className="success-order-id">Order #{orderId}</div>
                         <p>Your tribal treasures will be handcrafted and shipped within 3–5 business days.</p>
-                        <button className="btn-primary" style={{ width: '100%' }} onClick={() => { setShowSuccess(false); navigate('/dashboard/customer'); }}>View My Orders</button>
+                        <div className="success-details">
+                            <div className="success-detail-item"><span>📦</span><span>Tracking updates via email</span></div>
+                            <div className="success-detail-item"><span>🔄</span><span>Easy 7-day returns</span></div>
+                            <div className="success-detail-item"><span>📞</span><span>24/7 customer support</span></div>
+                        </div>
+                        <button className="btn-primary" style={{ width: '100%' }} onClick={() => { setShowSuccess(false); navigate('/dashboard/customer'); }}>View My Orders →</button>
+                        <button className="btn-secondary" style={{ width: '100%', marginTop: 10 }} onClick={() => { setShowSuccess(false); navigate('/products'); }}>Continue Shopping</button>
                     </div>
                 </div>
             )}

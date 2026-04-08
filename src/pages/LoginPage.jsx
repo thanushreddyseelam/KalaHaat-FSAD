@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext';
 import './LoginPage.css';
 
 export default function LoginPage() {
-    const { registeredUsers, registerUser, loginAs, showToast } = useApp();
+    const { registerUser, loginUser, finalizeLogin, authLoading, showToast } = useApp();
     const navigate = useNavigate();
     const [tab, setTab] = useState('login');
 
@@ -22,7 +22,7 @@ export default function LoginPage() {
     const [otpDigits, setOtpDigits] = useState(['', '', '', '', '', '']);
     const [currentOTP, setCurrentOTP] = useState('');
     const [otpErr, setOtpErr] = useState('');
-    const [pendingEmail, setPendingEmail] = useState('');
+    const [pendingLoginData, setPendingLoginData] = useState(null);
 
     // Register state
     const [regFname, setRegFname] = useState('');
@@ -60,17 +60,25 @@ export default function LoginPage() {
     const strengthColors = ['#dc3545', '#fd7e14', '#ffc107', '#4A6741'];
     const strengthLabels = ['Weak', 'Fair', 'Good', 'Strong'];
 
-    const doSignIn = () => {
+    const doSignIn = async () => {
         setLoginErr('');
         if (!loginEmail || !isValidEmail(loginEmail)) { setLoginErr('Enter a valid email'); return; }
         if (!loginPass) { setLoginErr('Password is required'); return; }
         if (captchaInput.toUpperCase() !== captchaAnswer) { setLoginErr('Incorrect security code'); generateCaptcha(); return; }
-        const user = registeredUsers[loginEmail.toLowerCase()];
-        if (!user) { setLoginErr('No account found. Please register first.'); return; }
-        if (user.password !== loginPass) { setLoginErr('Incorrect password'); return; }
+
+        // Call real API to login
+        const result = await loginUser(loginEmail, loginPass);
+
+        if (!result.success) {
+            setLoginErr(result.message);
+            generateCaptcha();
+            return;
+        }
+
+        // Show OTP verification (still demo OTP for now)
         const otp = Math.floor(100000 + Math.random() * 900000).toString();
         setCurrentOTP(otp);
-        setPendingEmail(loginEmail);
+        setPendingLoginData(result.data);
         setOtpSection(true);
         setOtpDigits(['', '', '', '', '', '']);
         setOtpErr('');
@@ -80,11 +88,17 @@ export default function LoginPage() {
         const entered = otpDigits.join('');
         if (entered.length < 6) { setOtpErr('Please enter all 6 digits'); return; }
         if (entered !== currentOTP) { setOtpErr('Incorrect OTP. Try again.'); return; }
-        const user = registeredUsers[pendingEmail.toLowerCase()];
-        loginAs(user.role, user.name, user.email);
-        showToast(`✅ Welcome back, ${user.name.split(' ')[0]}!`);
-        const dest = { customer: '/dashboard/customer', artisan: '/dashboard/artisan', admin: '/dashboard/admin', consultant: '/dashboard/consultant' };
-        navigate(dest[user.role] || '/');
+
+        // Now finalize the login — save user/token to state and localStorage
+        finalizeLogin(pendingLoginData);
+
+        const dest = {
+            customer: '/dashboard/customer',
+            artisan: '/dashboard/artisan',
+            admin: '/dashboard/admin',
+            consultant: '/dashboard/consultant'
+        };
+        navigate(dest[pendingLoginData.role] || '/');
     };
 
     const handleOtpChange = (idx, val) => {
@@ -98,20 +112,26 @@ export default function LoginPage() {
         }
     };
 
-    const doRegister = () => {
+    const doRegister = async () => {
         setRegErr('');
         if (!regFname) { setRegErr('First name is required'); return; }
         if (!regLname) { setRegErr('Last name is required'); return; }
         if (!regEmail || !isValidEmail(regEmail)) { setRegErr('Enter a valid email'); return; }
-        if (registeredUsers[regEmail.toLowerCase()]) { setRegErr('Already registered. Sign In instead.'); return; }
         if (!regPhone || regPhone.length < 10) { setRegErr('Enter a valid phone number'); return; }
         if (!regPass || regPass.length < 8) { setRegErr('Password must be at least 8 characters'); return; }
         if (!/[0-9]/.test(regPass)) { setRegErr('Password must contain a number'); return; }
         if (!/[^A-Za-z0-9]/.test(regPass)) { setRegErr('Password must contain a special character'); return; }
         if (regPass !== regCpass) { setRegErr('Passwords do not match'); return; }
         if (!regTerms) { setRegErr('You must accept the Terms of Service'); return; }
-        registerUser(regEmail, regPass, regRole, `${regFname} ${regLname}`, regPhone);
-        showToast(`✅ Account created! Welcome, ${regFname}! Please sign in.`);
+
+        // Call real API to register
+        const result = await registerUser(regEmail, regPass, regRole, `${regFname} ${regLname}`, regPhone);
+
+        if (!result.success) {
+            setRegErr(result.message);
+            return;
+        }
+
         setTab('login');
         setLoginEmail(regEmail);
     };
@@ -161,12 +181,14 @@ export default function LoginPage() {
                             </div>
                         </div>
                         {loginErr && <div className="auth-err">{loginErr}</div>}
-                        <button className="btn-primary" style={{ width: '100%', marginBottom: 20 }} onClick={doSignIn}>Sign In →</button>
+                        <button className="btn-primary" style={{ width: '100%', marginBottom: 20 }} onClick={doSignIn} disabled={authLoading}>
+                            {authLoading ? 'Signing in...' : 'Sign In →'}
+                        </button>
 
                         {otpSection && (
                             <div className="otp-section">
                                 <div className="otp-title">📱 OTP Verification</div>
-                                <p>A 6-digit OTP has been sent to <strong>{pendingEmail}</strong></p>
+                                <p>A 6-digit OTP has been sent to <strong>{loginEmail}</strong></p>
                                 <div className="otp-inputs">
                                     {otpDigits.map((d, i) => (
                                         <input key={i} className="otp-digit" type="text" maxLength={1} value={d}
@@ -221,7 +243,9 @@ export default function LoginPage() {
                             <label>I agree to the <a style={{ color: 'var(--terracotta)' }}>Terms of Service</a> and <a style={{ color: 'var(--terracotta)' }}>Privacy Policy</a></label>
                         </div>
                         {regErr && <div className="auth-err">{regErr}</div>}
-                        <button className="btn-primary" style={{ width: '100%' }} onClick={doRegister}>Create Account →</button>
+                        <button className="btn-primary" style={{ width: '100%' }} onClick={doRegister} disabled={authLoading}>
+                            {authLoading ? 'Creating account...' : 'Create Account →'}
+                        </button>
                         <p style={{ textAlign: 'center', marginTop: 16, fontSize: '0.9rem', color: 'var(--bark)' }}>Already have an account? <a onClick={() => setTab('login')} style={{ color: 'var(--terracotta)', cursor: 'pointer', fontWeight: 600 }}>Sign In</a></p>
                     </div>
                 )}

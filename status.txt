@@ -1,0 +1,50 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   index.html
+	modified:   package-lock.json
+	modified:   package.json
+	deleted:    public/vite.svg
+	modified:   src/App.jsx
+	modified:   src/components/Footer.jsx
+	modified:   src/components/Navbar.css
+	modified:   src/components/Navbar.jsx
+	modified:   src/components/ProductCard.jsx
+	modified:   src/context/AppContext.jsx
+	modified:   src/index.css
+	modified:   src/pages/AdminDashboard.jsx
+	modified:   src/pages/ArtisanDashboard.jsx
+	modified:   src/pages/CartPage.jsx
+	modified:   src/pages/ConsultantDashboard.jsx
+	modified:   src/pages/CustomerDashboard.jsx
+	modified:   src/pages/HomePage.css
+	modified:   src/pages/HomePage.jsx
+	modified:   src/pages/LoginPage.css
+	modified:   src/pages/LoginPage.jsx
+	modified:   src/pages/PaymentPage.jsx
+	modified:   src/pages/ProductDetailPage.jsx
+	modified:   src/pages/ProductsPage.jsx
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Gemini_Generated_Image_byvd8cbyvd8cbyvd-Picsart-BackgroundRemover.png
+	_filelist.txt
+	kalahaat_linkedin_cover.png
+	kalahaat_linkedin_cover_v2.png
+	public/favicon.png
+	public/images/products/user-upload-1775368162148-668410177.png
+	recent_files.txt
+	src/Gemini_Generated_Image_taukzetaukzetauk-removebg-preview.png
+	src/assets/logo-text.png
+	src/assets/logo.png
+	src/components/QuickViewModal.css
+	src/components/QuickViewModal.jsx
+	src/components/SkeletonCard.css
+	src/components/SkeletonCard.jsx
+	src/services/
+	status.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

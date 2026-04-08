@@ -1,81 +1,91 @@
 .main-nav {
-    background: var(--earth);
-    padding: 0 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 50px;
     height: 70px;
+    background: rgba(15, 38, 32, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 20px rgba(44, 24, 16, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-links {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: 8px;
 }
 
 .nav-btn {
-    background: none;
-    border: none;
-    color: var(--cream);
+    color: rgba(245, 237, 214, 0.75);
+    text-decoration: none;
     font-family: 'Space Mono', monospace;
     font-size: 0.72rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    cursor: pointer;
-    padding: 8px 14px;
+    padding: 8px 16px;
     border-radius: 4px;
-    transition: all 0.2s;
-    text-decoration: none;
+    transition: all 0.25s;
+    position: relative;
 }
 
 .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
     color: var(--turmeric);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-btn.active-nav {
-    background: var(--terracotta);
-    color: white;
+    color: var(--turmeric);
+}
+
+.nav-btn.active-nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: var(--turmeric);
+    border-radius: 1px;
 }
 
 .nav-cta {
-    background: var(--ochre);
-    color: var(--earth);
+    background: var(--terracotta);
+    color: white !important;
+    border: none;
+    padding: 10px 22px;
     font-family: 'Space Mono', monospace;
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s;
+    border-radius: 4px;
     text-decoration: none;
+    transition: all 0.25s;
 }
 
 .nav-cta:hover {
-    background: var(--turmeric);
+    background: var(--clay);
     transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(196, 98, 45, 0.4);
 }
 
 .role-badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
     padding: 6px 14px;
     border-radius: 20px;
     font-family: 'Space Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 0.62rem;
+    letter-spacing: 0.8px;
     color: var(--turmeric);
+    margin-right: 8px;
 }
 
 .hamburger {
@@ -83,14 +93,14 @@
     background: none;
     border: none;
     color: var(--turmeric);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 8px;
 }
 
 @media (max-width: 768px) {
     .main-nav {
-        padding: 0 16px;
+        padding: 0 20px;
     }
 
     .hamburger {
@@ -99,25 +109,48 @@
 
     .nav-links {
         display: none;
-        position: absolute;
+        position: fixed;
         top: 70px;
         left: 0;
         right: 0;
-        background: var(--earth);
+        background: rgba(15, 38, 32, 0.98);
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 16px;
-        gap: 4px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        gap: 8px;
         z-index: 99;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        animation: slideDown 0.3s ease;
     }
 
     .nav-links.open {
         display: flex;
     }
 
-    .nav-btn,
+    .nav-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+
     .nav-cta {
         width: 100%;
         text-align: center;
+    }
+
+    .role-badge {
+        margin: 0 0 8px 0;
+        text-align: center;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

@@ -1,0 +1,11 @@
+commit 7d8111e19ecbdf5f4e5d3c2e8193aa091e85d3b3
+Author: thanushreddyseelam <thanushreddyseelam@gmail.com>
+Date:   Mon Feb 23 11:39:40 2026 +0530
+
+     Add-Netlify-deployment-config
+
+commit efa4c09fec81421d513cd25c895e41736aae079c
+Author: thanushreddyseelam <thanushreddyseelam@gmail.com>
+Date:   Mon Feb 23 11:19:38 2026 +0530
+
+    Initial commit: KalaHaat React application

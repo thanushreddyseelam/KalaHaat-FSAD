@@ -27,19 +27,19 @@ export default function CartPage() {
                     ) : (
                         <div>
                             {cartItems.map(item => (
-                                <div className="cart-item" key={item.id}>
+                                <div className="cart-item" key={item._id || item.id}>
                                     <div className="cart-item-img">{item.image ? <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 8 }} /> : item.emoji}</div>
                                     <div className="cart-item-info">
                                         <div className="cart-item-name">{item.name}</div>
                                         <div className="cart-item-origin">{item.origin}</div>
-                                        <div className="cart-item-price">₹{(item.price * item.qty).toLocaleString('en-IN')}</div>
+                                        <div className="cart-item-price">₹{(Number(item.price) * item.qty).toLocaleString('en-IN')}</div>
                                     </div>
                                     <div className="cart-item-qty">
-                                        <button className="qty-mini-btn" onClick={() => updateCartQty(item.id, -1)}>−</button>
+                                        <button className="qty-mini-btn" onClick={() => updateCartQty(item._id || item.id, -1)}>−</button>
                                         <span>{item.qty}</span>
-                                        <button className="qty-mini-btn" onClick={() => updateCartQty(item.id, 1)}>+</button>
+                                        <button className="qty-mini-btn" onClick={() => updateCartQty(item._id || item.id, 1)}>+</button>
                                     </div>
-                                    <button className="remove-btn" onClick={() => removeFromCart(item.id)}>🗑</button>
+                                    <button className="remove-btn" onClick={() => removeFromCart(item._id || item.id)}>🗑</button>
                                 </div>
                             ))}
                         </div>

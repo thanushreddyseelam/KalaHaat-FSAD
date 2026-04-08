@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import './Navbar.css';
+import logoImg from '../assets/logo.png';
+import logoText from '../assets/logo-text.png';
 
 export default function Navbar() {
     const { currentRole, currentUser, cartCount, signOut } = useApp();
     const [mobileOpen, setMobileOpen] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const roleLabels = {
         customer: '🛍 Customer', artisan: '🎨 Artisan',
@@ -47,7 +50,10 @@ export default function Navbar() {
 
     return (
         <nav className="main-nav">
-            <Link to="/" className="logo" onClick={() => setMobileOpen(false)}>Kala<span>Haat</span></Link>
+            <Link to="/" className="logo" onClick={() => setMobileOpen(false)}>
+                <img src={logoImg} alt="KalaHaat Logo" className="logo-img" />
+                <img src={logoText} alt="KalaHaat" className="logo-text-img" />
+            </Link>
 
             <button className="hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Menu">
                 {mobileOpen ? '✕' : '☰'}
@@ -68,7 +74,7 @@ export default function Navbar() {
                     </Link>
                 ))}
                 {currentRole !== 'guest' && (
-                    <button className="nav-cta" onClick={() => { signOut(); setMobileOpen(false); }}>Sign Out</button>
+                    <button className="nav-cta" onClick={() => { signOut(); setMobileOpen(false); navigate('/'); }}>Sign Out</button>
                 )}
             </div>
         </nav>
